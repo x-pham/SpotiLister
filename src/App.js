@@ -78,6 +78,15 @@ function App() {
 
             console.log(str);
             console.log(imageLinkArray);
+            let playlistDisplay = document.getElementById("playlistDisplay");
+            while (playlistDisplay.hasChildNodes()) {
+              playlistDisplay.removeChild(playlistDisplay.firstChild);
+            }
+            for (const item of imageLinkArray) {
+              let newImage = document.createElement('img');
+              newImage.src = item;
+              playlistDisplay.appendChild(newImage);
+            }
           },
           error: function (result) {
             console.log(JSON.stringify(result));
@@ -92,7 +101,7 @@ function App() {
 
   return (
     <div className="body">
-      <div className="playlistDisplay">
+      <div id="playlistDisplay" className="playlistDisplay">
         <button onClick={displayPlaylist}>Display Playlist</button>
       </div>
     </div>
