@@ -87,7 +87,10 @@ function App() {
               let newImage = document.createElement('img');
               newImage.src = imageLinkArray[i];
               newImage.className = "trackImage";
-              playlistDisplay.appendChild(newImage);
+              let newDiv = document.createElement('div');
+              newDiv.className = "trackDiv";
+              newDiv.appendChild(newImage);
+              playlistDisplay.appendChild(newDiv);
             }
           },
           error: function (result) {
@@ -111,7 +114,10 @@ function App() {
       let newImage = document.createElement('img');
       newImage.src = imageLinkArray[i];
       newImage.className = "trackImage";
-      playlistDisplay.appendChild(newImage);
+      let newDiv = document.createElement('div');
+      newDiv.className = "trackDiv";
+      newDiv.appendChild(newImage);
+      playlistDisplay.appendChild(newDiv);
     }
   }
 
@@ -125,12 +131,16 @@ function App() {
       let newImage = document.createElement('img');
       newImage.src = imageLinkArray[i];
       newImage.className = "trackImage";
-      playlistDisplay.appendChild(newImage);
+      let newDiv = document.createElement('div');
+      newDiv.className = "trackDiv";
+      newDiv.appendChild(newImage);
+      playlistDisplay.appendChild(newDiv);
     }
   }
 
   return (
     <div className="body">
+      <div className="dateDisplay">October 21, 2022</div>
       <div id="playlistDisplay" className="playlistDisplay">
       </div>
       <div className="buttonDisplay">

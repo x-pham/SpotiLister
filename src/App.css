@@ -1,28 +1,37 @@
 .playlistDisplay {
   display: flex;
   flex-flow: row wrap;
-  width: 100vw;
-  height: 95vh;
+  width: 1080px;
+  height: 700px;
+  margin: auto;
+  
 }
 
 .trackImage {
-  width: 250px;
-  height: 250px;
+  width: 150px;
+  height: 150px;
+  
+}
+
+.trackDiv {
+  flex-basis: 50%;
+  text-align:center;
+  
 }
 
 .body {
-  max-height: 100vh;
   background-color: #570A1C;
   color:#F0EAD1;
-  margin: 0;
-}
-
-.nextButton {
-  position: 'absolute';
-  bottom: 0;
-  left: 0;
 }
 
 .buttonDisplay {
-  height: 5vh;
+  height: 3vh;
+  margin: auto;
+  text-align: center;
+}
+
+.dateDisplay {
+  text-align: center;
+  font-size: 300%;
+  padding-bottom: 50px;
 }
