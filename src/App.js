@@ -135,8 +135,8 @@ function App() {
       </div>
       <div className="buttonDisplay">
         <button onClick={displayPlaylist}>Display Playlist</button>
-        <button onClick={nextPage} className="nextButton">Next</button>
         <button onClick={prevPage} className="prevButton">Prev</button>
+        <button onClick={nextPage} className="nextButton">Next</button>
       </div>
     </div>
   );
