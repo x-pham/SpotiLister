@@ -12,6 +12,7 @@ function App() {
   var buf = Buffer.from(client_id + ':' + client_secret).toString('base64');
   var imageLinkArray = [];
   var playlist;
+  var page = 0;
 
   function getToken() {
     // Get the authentication token from Spotify
@@ -34,6 +35,8 @@ function App() {
   }
 
   async function displayPlaylist() {
+    imageLinkArray = [];
+    page = 0;
     $.ajax({
       url: 'https://accounts.spotify.com/api/token',
       type: 'POST',
@@ -79,12 +82,11 @@ function App() {
             console.log(str);
             console.log(imageLinkArray);
             let playlistDisplay = document.getElementById("playlistDisplay");
-            while (playlistDisplay.hasChildNodes()) {
-              playlistDisplay.removeChild(playlistDisplay.firstChild);
-            }
-            for (const item of imageLinkArray) {
+            playlistDisplay.replaceChildren();
+            for (let i = page * 6; (i < (page * 6) + 6) && (i < imageLinkArray.length); i++) {
               let newImage = document.createElement('img');
-              newImage.src = item;
+              newImage.src = imageLinkArray[i];
+              newImage.className = "trackImage";
               playlistDisplay.appendChild(newImage);
             }
           },
@@ -99,10 +101,42 @@ function App() {
     });
   }
 
+  function nextPage() {
+    if (page < (Math.ceil(imageLinkArray.length / 6) - 1)) {
+      page++;
+    }
+    let playlistDisplay = document.getElementById("playlistDisplay");
+    playlistDisplay.replaceChildren();
+    for (let i = page * 6; (i < (page * 6) + 6) && (i < imageLinkArray.length); i++) {
+      let newImage = document.createElement('img');
+      newImage.src = imageLinkArray[i];
+      newImage.className = "trackImage";
+      playlistDisplay.appendChild(newImage);
+    }
+  }
+
+  function prevPage() {
+    if (page > (0)) {
+      page--;
+    }
+    let playlistDisplay = document.getElementById("playlistDisplay");
+    playlistDisplay.replaceChildren();
+    for (let i = page * 6; (i < (page * 6) + 6) && (i < imageLinkArray.length); i++) {
+      let newImage = document.createElement('img');
+      newImage.src = imageLinkArray[i];
+      newImage.className = "trackImage";
+      playlistDisplay.appendChild(newImage);
+    }
+  }
+
   return (
     <div className="body">
       <div id="playlistDisplay" className="playlistDisplay">
+      </div>
+      <div className="buttonDisplay">
         <button onClick={displayPlaylist}>Display Playlist</button>
+        <button onClick={nextPage} className="nextButton">Next</button>
+        <button onClick={prevPage} className="prevButton">Prev</button>
       </div>
     </div>
   );
