@@ -10,7 +10,8 @@ function App() {
   var client_secret = keys.client_secret;
 
   var buf = Buffer.from(client_id + ':' + client_secret).toString('base64');
-  //var imageLinkArray = [];
+  var imageLinkArray = [];
+  var playlist;
 
   function getToken() {
     // Get the authentication token from Spotify
@@ -51,6 +52,32 @@ function App() {
           headers: { 'Authorization': 'Bearer ' + token.access_token },
           success: function (result) {
             console.log(result);
+            playlist = result;
+            var str = "";
+            for (let i = 0; i < result.tracks.items.length; i++) {
+
+              // Download images
+              var imageLink = result.tracks.items[i].track.album.images[0].url;
+              imageLinkArray.push(imageLink);
+              //imageLink = imageLink.substring(1, imageLink.length - 2);
+              /*
+              downloadImage(imageLink, i + '.png')
+              .then(console.log)
+              .catch(console.error);
+              */
+              str += result.tracks.items[i].track.name;
+              str += ' By: '
+              for (let j = 0; j < result.tracks.items[i].track.artists.length; j++) {
+                str += result.tracks.items[i].track.artists[j].name;
+                if (j !== result.tracks.items[i].track.artists.length - 1) {
+                  str += ', '
+                }
+              }
+              str += '\n';
+            }
+
+            console.log(str);
+            console.log(imageLinkArray);
           },
           error: function (result) {
             console.log(JSON.stringify(result));
