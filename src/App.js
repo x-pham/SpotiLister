@@ -14,6 +14,8 @@ function App() {
   var imageLinkArray = [];
   var playlist;
   var page = 0;
+  var playlistID;
+  var apiLink;
 
   function getToken() {
     // Get the authentication token from Spotify
@@ -36,6 +38,16 @@ function App() {
   }
 
   async function displayPlaylist() {
+    if (document.getElementById('playlistField').value === "" && playlistID === "") {
+      alert('Please enter a playlist link');
+      return;
+    }
+    if (playlistID === "") {
+      playlistID = document.getElementById('playlistField').value.substring(document.getElementById('playlistField').value.lastIndexOf("/") + 1);
+      console.log(playlistID);
+    }
+    apiLink = "https://api.spotify.com/v1/playlists/" + playlistID + "/tracks";
+    console.log(apiLink);
     imageLinkArray = [];
     page = 0;
     $.ajax({
@@ -50,7 +62,7 @@ function App() {
         token = result;
         //Get playlist tracks
         $.ajax({
-          url: 'https://api.spotify.com/v1/playlists/4gjxVoYtklG3O0sPS393xW?si=03ff892c40d94e25/tracks',
+          url: apiLink,
           type: 'GET',
           headers: { 'Authorization': 'Bearer ' + token.access_token },
           success: function (result) {
@@ -85,6 +97,7 @@ function App() {
         console.log(JSON.stringify(result));
       }
     });
+    playlistID = "";
   }
 
   function nextPage() {
@@ -146,8 +159,8 @@ function App() {
       if (trackName.includes("with")) {
         trackName = trackName.substring(0, trackName.indexOf('with') - 2);
       }
-      if (trackName.length > 40) {
-        trackName = trackName.substring(0, 41) + "...";
+      if (trackName.length > 30) {
+        trackName = trackName.substring(0, 31) + "...";
       }
       newTextDiv.innerHTML = "<b>" + trackName + "</b>" + "<br/>";
       //Populate track artist(s)
@@ -167,8 +180,8 @@ function App() {
       newTextDiv.innerHTML += artistText;
       //Populate album name
       let albumName = playlist.tracks.items[i].track.album.name;
-      if (albumName.length > 40) {
-        albumName = albumName.substring(0, 41) + "...";
+      if (albumName.length > 30) {
+        albumName = albumName.substring(0, 31) + "...";
       }
       newTextDiv.innerHTML += "<i>" + albumName + "</i>";
       newTextDiv.className = "trackText";
@@ -189,6 +202,12 @@ function App() {
     dateDisplay.innerHTML = date;
   }
 
+  //Display the playlist of Rock, Paper, Rap, Shoot as a sample
+  function displayRPRS() {
+    playlistID = "4gjxVoYtklG3O0sPS393xW?si=03ff892c40d94e25";
+    displayPlaylist();
+  }
+
   return (
     <div className="body">
       <div className="imageDisplay">
@@ -197,7 +216,10 @@ function App() {
         </div>
       </div>
       <div className="buttonDisplay">
+        <input type="text" id="playlistField"></input>
         <button onClick={displayPlaylist}>Display Playlist</button>
+        <button onClick={displayRPRS}>Sample</button>
+        <br/>
         <button onClick={prevPage} className="prevButton">Prev</button>
         <button onClick={nextPage} className="nextButton">Next</button>
         <input type="text" id="dateField"></input>
