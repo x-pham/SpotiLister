@@ -44,10 +44,8 @@ function App() {
     }
     if (playlistID === "") {
       playlistID = document.getElementById('playlistField').value.substring(document.getElementById('playlistField').value.lastIndexOf("/") + 1);
-      console.log(playlistID);
     }
     apiLink = "https://api.spotify.com/v1/playlists/" + playlistID + "/tracks";
-    console.log(apiLink);
     imageLinkArray = [];
     page = 0;
     $.ajax({
