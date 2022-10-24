@@ -48,14 +48,12 @@ function App() {
       data: 'grant_type=client_credentials',
       success: function (result) {
         token = result;
-        console.log(token);
         //Get playlist tracks
         $.ajax({
           url: 'https://api.spotify.com/v1/playlists/4gjxVoYtklG3O0sPS393xW?si=03ff892c40d94e25/tracks',
           type: 'GET',
           headers: { 'Authorization': 'Bearer ' + token.access_token },
           success: function (result) {
-            console.log(result);
             playlist = result;
             var str = "";
             for (let i = 0; i < result.tracks.items.length; i++) {
@@ -63,12 +61,6 @@ function App() {
               // Download images
               var imageLink = result.tracks.items[i].track.album.images[0].url;
               imageLinkArray.push(imageLink);
-              //imageLink = imageLink.substring(1, imageLink.length - 2);
-              /*
-              downloadImage(imageLink, i + '.png')
-              .then(console.log)
-              .catch(console.error);
-              */
               str += result.tracks.items[i].track.name;
               str += ' By: '
               for (let j = 0; j < result.tracks.items[i].track.artists.length; j++) {
@@ -80,8 +72,7 @@ function App() {
               str += '\n';
             }
 
-            console.log(str);
-            console.log(imageLinkArray);
+            //console.log(playlist);
             //Populate playlist tracks
             populateTracks();
           },
@@ -150,11 +141,9 @@ function App() {
       //Populate track name
       let trackName = playlist.tracks.items[i].track.name;
       if (trackName.includes("feat.")) {
-        console.log('includes');
         trackName = trackName.substring(0, trackName.indexOf('feat.') - 2);
       }
       if (trackName.includes("with")) {
-        console.log('includes');
         trackName = trackName.substring(0, trackName.indexOf('with') - 2);
       }
       newTextDiv.innerHTML = trackName + "<br/>";
