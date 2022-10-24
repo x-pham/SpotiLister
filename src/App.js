@@ -146,6 +146,9 @@ function App() {
       if (trackName.includes("with")) {
         trackName = trackName.substring(0, trackName.indexOf('with') - 2);
       }
+      if (trackName.length > 40) {
+        trackName = trackName.substring(0, 41) + "...";
+      }
       newTextDiv.innerHTML = "<b>" + trackName + "</b>" + "<br/>";
       //Populate track artist(s)
       let artistText = "";
@@ -163,7 +166,11 @@ function App() {
       }
       newTextDiv.innerHTML += artistText;
       //Populate album name
-      newTextDiv.innerHTML += "<i>" + playlist.tracks.items[i].track.album.name + "</i>";
+      let albumName = playlist.tracks.items[i].track.album.name;
+      if (albumName.length > 40) {
+        albumName = albumName.substring(0, 41) + "...";
+      }
+      newTextDiv.innerHTML += "<i>" + albumName + "</i>";
       newTextDiv.className = "trackText";
       let newDiv = document.createElement('div');
       newDiv.className = "trackDiv";
