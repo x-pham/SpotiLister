@@ -186,7 +186,10 @@ function App() {
         <button onClick={displayPlaylist}>Display Playlist</button>
         <button onClick={prevPage} className="prevButton">Prev</button>
         <button onClick={nextPage} className="nextButton">Next</button>
+        <input type="text" id="dateField"></input>
+        <button>Set Date</button>
       </div>
+      
     </div>
   );
 }
