@@ -141,7 +141,7 @@ function App() {
       //Populate track artist(s)
       let artistText = "";
       for (let j = 0; j < playlist.tracks.items[i].track.artists.length; j++) {
-        if (artistText.length > 20) {
+        if (artistText.length > 40) {
           artistText += "... <br/>";
           break;
         }
