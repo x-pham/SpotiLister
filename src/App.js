@@ -128,13 +128,21 @@ function App() {
       newImage.className = "trackImage";
       let newTextDiv = document.createElement('div');
       //Populate track name
-      newTextDiv.innerHTML = playlist.tracks.items[i].track.name + "<br/>";
+      let trackName = playlist.tracks.items[i].track.name;
+      if (trackName.includes("feat.")) {
+        console.log('includes');
+        trackName = trackName.substring(0, trackName.indexOf('feat.') - 2);
+      }
+      if (trackName.includes("with")) {
+        console.log('includes');
+        trackName = trackName.substring(0, trackName.indexOf('with') - 2);
+      }
+      newTextDiv.innerHTML = trackName + "<br/>";
       //Populate track artist(s)
       let artistText = "";
       for (let j = 0; j < playlist.tracks.items[i].track.artists.length; j++) {
         if (artistText.length > 20) {
           artistText += "... <br/>";
-          console.log('big');
           break;
         }
         if (j !== playlist.tracks.items[i].track.artists.length - 1) {
