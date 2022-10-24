@@ -26,6 +26,8 @@
   text-align:center;
   display: flex;
   padding-right: 5%;
+  position: relative;
+  width: 500px;
 }
 
 .body {
@@ -51,10 +53,29 @@
   text-align: left;
   padding-left: 10px;
   font-size: 125%;
+  position: absolute;
+  bottom: 120px;
+  left: 200px;
 }
 
 .trackNumber {
   font-size: 200%;
   padding-right: 10px;
   text-shadow: 2px 2px 8px #000000;
+}
+
+.placeholderTrackText {
+  text-align: left;
+  padding-left: 10px;
+  font-size: 125%;
+  position: absolute;
+  bottom: 120px;
+  left: 200px;
+  color: #570A1C;
+}
+
+.placeholderTrackNumber {
+  font-size: 200%;
+  padding-right: 10px;
+  color: #570A1C;
 }

@@ -2,6 +2,7 @@ import './App.css';
 import keys from './keys.json';
 import $ from 'jquery';
 import { Buffer } from 'buffer';
+import playlistTrackPlaceholder from "./PlaylistTrackPlaceholder.jpg"
 
 
 function App() {
@@ -98,21 +99,40 @@ function App() {
   function nextPage() {
     if (page < (Math.ceil(imageLinkArray.length / 6) - 1)) {
       page++;
+      populateTracks();
     }
-    populateTracks();
   }
 
   function prevPage() {
     if (page > (0)) {
       page--;
+      populateTracks();
     }
-    populateTracks();
   }
 
   function populateTracks() {
     let playlistDisplay = document.getElementById("playlistDisplay");
     playlistDisplay.replaceChildren();
-    for (let i = page * 6; (i < (page * 6) + 6) && (i < imageLinkArray.length); i++) {
+    for (let i = page * 6; (i < (page * 6) + 6); i++) {
+      if (i >= imageLinkArray.length) {
+        let newNumber = document.createElement('div');
+        newNumber.innerHTML = "00";
+        newNumber.className = "placeholderTrackNumber";
+        let newImage = document.createElement('img');
+        newImage.src = playlistTrackPlaceholder;
+        newImage.className = "trackImage";
+        let newTextDiv = document.createElement('div');
+        newTextDiv.innerHTML = ".";
+        newTextDiv.className = "placeholderTrackText";
+        let newDiv = document.createElement('div');
+        newDiv.className = "trackDiv";
+        newDiv.id = "track" + i;
+        newDiv.appendChild(newNumber);
+        newDiv.appendChild(newImage);
+        newDiv.appendChild(newTextDiv);
+        playlistDisplay.appendChild(newDiv);
+        continue;
+      }
       //Populate track number
       let newNumber = document.createElement('div');
       if (i < 9) {
