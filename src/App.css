@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'kameron', 'kameron-bold';
+  src: local('kameron'), url(./Kameron/kameron-regular-webfont.woff) format('woff');
+  src: local('kameron-bold'), url(./Kameron/kameron-bold-webfont.woff) format('woff');
+}
+
 .imageDisplay {
   display: flex;
   flex-flow: row wrap;
@@ -47,6 +53,7 @@
   padding-bottom: 75px;
   flex-basis: 100%;
   text-shadow: 2px 2px 8px #000000;
+  font-family: 'kameron-bold=', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .trackText {
@@ -56,12 +63,14 @@
   position: absolute;
   bottom: 120px;
   left: 215px;
+  font-family: 'kameron-bold', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .trackNumber {
   font-size: 300%;
   padding-right: 10px;
   text-shadow: 2px 2px 8px #000000;
+  font-family: 'kameron-bold', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .placeholderTrackText {
@@ -72,10 +81,12 @@
   bottom: 120px;
   left: 215px;
   color: #570A1C;
+  font-family: 'kameron-bold', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .placeholderTrackNumber {
   font-size: 200%;
   padding-right: 10px;
   color: #570A1C;
+  font-family: 'kameron-bold', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
