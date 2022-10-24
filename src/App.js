@@ -113,7 +113,7 @@ function App() {
         newImage.src = playlistTrackPlaceholder;
         newImage.className = "trackImage";
         let newTextDiv = document.createElement('div');
-        newTextDiv.innerHTML = ".";
+        newTextDiv.innerHTML = "<b>.</b>";
         newTextDiv.className = "placeholderTrackText";
         let newDiv = document.createElement('div');
         newDiv.className = "trackDiv";
@@ -146,7 +146,7 @@ function App() {
       if (trackName.includes("with")) {
         trackName = trackName.substring(0, trackName.indexOf('with') - 2);
       }
-      newTextDiv.innerHTML = trackName + "<br/>";
+      newTextDiv.innerHTML = "<b>" + trackName + "</b>" + "<br/>";
       //Populate track artist(s)
       let artistText = "";
       for (let j = 0; j < playlist.tracks.items[i].track.artists.length; j++) {
