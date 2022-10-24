@@ -43,8 +43,8 @@
 
 .dateDisplay {
   text-align: center;
-  font-size: 300%;
-  padding-bottom: 50px;
+  font-size: 400%;
+  padding-bottom: 75px;
   flex-basis: 100%;
   text-shadow: 2px 2px 8px #000000;
 }
@@ -55,11 +55,11 @@
   font-size: 125%;
   position: absolute;
   bottom: 120px;
-  left: 200px;
+  left: 215px;
 }
 
 .trackNumber {
-  font-size: 200%;
+  font-size: 300%;
   padding-right: 10px;
   text-shadow: 2px 2px 8px #000000;
 }
@@ -70,7 +70,7 @@
   font-size: 125%;
   position: absolute;
   bottom: 120px;
-  left: 200px;
+  left: 215px;
   color: #570A1C;
 }
 
