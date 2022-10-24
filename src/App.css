@@ -1,8 +1,17 @@
+.imageDisplay {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: center;
+  width: 1000px;
+  height: 1000px;
+  margin: auto;
+}
+
 .playlistDisplay {
   display: flex;
   flex-flow: row wrap;
-  width: 1080px;
-  height: 700px;
+  width: 800px;
+  height: 800px;
   margin: auto;
   
 }
@@ -13,9 +22,10 @@
 }
 
 .trackDiv {
-  flex-basis: 50%;
+  flex-basis: 45%;
   text-align:center;
   display: flex;
+  padding-right: 5%;
 }
 
 .body {
@@ -33,6 +43,8 @@
   text-align: center;
   font-size: 300%;
   padding-bottom: 50px;
+  flex-basis: 100%;
+  text-shadow: 2px 2px 8px #000000;
 }
 
 .trackText {
@@ -44,4 +56,5 @@
 .trackNumber {
   font-size: 200%;
   padding-right: 10px;
+  text-shadow: 2px 2px 8px #000000;
 }

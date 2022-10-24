@@ -130,16 +130,23 @@ function App() {
       //Populate track name
       newTextDiv.innerHTML = playlist.tracks.items[i].track.name + "<br/>";
       //Populate track artist(s)
+      let artistText = "";
       for (let j = 0; j < playlist.tracks.items[i].track.artists.length; j++) {
+        if (artistText.length > 20) {
+          artistText += "... <br/>";
+          console.log('big');
+          break;
+        }
         if (j !== playlist.tracks.items[i].track.artists.length - 1) {
-          newTextDiv.innerHTML += playlist.tracks.items[i].track.artists[j].name + ", <br/>";
+          artistText += playlist.tracks.items[i].track.artists[j].name + ", <br/>";
         }
         else {
-          newTextDiv.innerHTML += playlist.tracks.items[i].track.artists[j].name + "<br/>";
+          artistText += playlist.tracks.items[i].track.artists[j].name + "<br/>";
         }
       }
+      newTextDiv.innerHTML += artistText;
       //Populate album name
-      newTextDiv.innerHTML += playlist.tracks.items[i].track.album.name;
+      newTextDiv.innerHTML += "<i>" + playlist.tracks.items[i].track.album.name + "</i>";
       newTextDiv.className = "trackText";
       let newDiv = document.createElement('div');
       newDiv.className = "trackDiv";
@@ -153,8 +160,10 @@ function App() {
 
   return (
     <div className="body">
-      <div className="dateDisplay">October 21, 2022</div>
-      <div id="playlistDisplay" className="playlistDisplay">
+      <div className="imageDisplay">
+        <div className="dateDisplay">October 21, 2022</div>
+        <div id="playlistDisplay" className="playlistDisplay">
+        </div>
       </div>
       <div className="buttonDisplay">
         <button onClick={displayPlaylist}>Display Playlist</button>
