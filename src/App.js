@@ -175,10 +175,17 @@ function App() {
     }
   }
 
+  function setDate() {
+    var dateDisplay = document.getElementById('dateDisplay');
+    var date = document.getElementById('dateField').value;
+
+    dateDisplay.innerHTML = date;
+  }
+
   return (
     <div className="body">
       <div className="imageDisplay">
-        <div className="dateDisplay">October 21, 2022</div>
+        <div id="dateDisplay" className="dateDisplay">October 21, 2022</div>
         <div id="playlistDisplay" className="playlistDisplay">
         </div>
       </div>
@@ -187,7 +194,7 @@ function App() {
         <button onClick={prevPage} className="prevButton">Prev</button>
         <button onClick={nextPage} className="nextButton">Next</button>
         <input type="text" id="dateField"></input>
-        <button>Set Date</button>
+        <button onClick={setDate} >Set Date</button>
       </div>
       
     </div>
