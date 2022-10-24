@@ -81,17 +81,8 @@ function App() {
 
             console.log(str);
             console.log(imageLinkArray);
-            let playlistDisplay = document.getElementById("playlistDisplay");
-            playlistDisplay.replaceChildren();
-            for (let i = page * 6; (i < (page * 6) + 6) && (i < imageLinkArray.length); i++) {
-              let newImage = document.createElement('img');
-              newImage.src = imageLinkArray[i];
-              newImage.className = "trackImage";
-              let newDiv = document.createElement('div');
-              newDiv.className = "trackDiv";
-              newDiv.appendChild(newImage);
-              playlistDisplay.appendChild(newDiv);
-            }
+            //Populate playlist tracks
+            populateTracks();
           },
           error: function (result) {
             console.log(JSON.stringify(result));
@@ -108,32 +99,54 @@ function App() {
     if (page < (Math.ceil(imageLinkArray.length / 6) - 1)) {
       page++;
     }
-    let playlistDisplay = document.getElementById("playlistDisplay");
-    playlistDisplay.replaceChildren();
-    for (let i = page * 6; (i < (page * 6) + 6) && (i < imageLinkArray.length); i++) {
-      let newImage = document.createElement('img');
-      newImage.src = imageLinkArray[i];
-      newImage.className = "trackImage";
-      let newDiv = document.createElement('div');
-      newDiv.className = "trackDiv";
-      newDiv.appendChild(newImage);
-      playlistDisplay.appendChild(newDiv);
-    }
+    populateTracks();
   }
 
   function prevPage() {
     if (page > (0)) {
       page--;
     }
+    populateTracks();
+  }
+
+  function populateTracks() {
     let playlistDisplay = document.getElementById("playlistDisplay");
     playlistDisplay.replaceChildren();
     for (let i = page * 6; (i < (page * 6) + 6) && (i < imageLinkArray.length); i++) {
+      //Populate track number
+      let newNumber = document.createElement('div');
+      if (i < 9) {
+        newNumber.innerHTML = "0" + (i + 1);
+      }
+      else {
+        newNumber.innerHTML = i + 1;
+      }
+      newNumber.className = "trackNumber";
+      //Populate track image
       let newImage = document.createElement('img');
       newImage.src = imageLinkArray[i];
       newImage.className = "trackImage";
+      let newTextDiv = document.createElement('div');
+      //Populate track name
+      newTextDiv.innerHTML = playlist.tracks.items[i].track.name + "<br/>";
+      //Populate track artist(s)
+      for (let j = 0; j < playlist.tracks.items[i].track.artists.length; j++) {
+        if (j !== playlist.tracks.items[i].track.artists.length - 1) {
+          newTextDiv.innerHTML += playlist.tracks.items[i].track.artists[j].name + ", <br/>";
+        }
+        else {
+          newTextDiv.innerHTML += playlist.tracks.items[i].track.artists[j].name + "<br/>";
+        }
+      }
+      //Populate album name
+      newTextDiv.innerHTML += playlist.tracks.items[i].track.album.name;
+      newTextDiv.className = "trackText";
       let newDiv = document.createElement('div');
       newDiv.className = "trackDiv";
+      newDiv.id = "track" + i;
+      newDiv.appendChild(newNumber);
       newDiv.appendChild(newImage);
+      newDiv.appendChild(newTextDiv);
       playlistDisplay.appendChild(newDiv);
     }
   }

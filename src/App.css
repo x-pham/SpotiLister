@@ -10,13 +10,12 @@
 .trackImage {
   width: 150px;
   height: 150px;
-  
 }
 
 .trackDiv {
   flex-basis: 50%;
   text-align:center;
-  
+  display: flex;
 }
 
 .body {
@@ -34,4 +33,15 @@
   text-align: center;
   font-size: 300%;
   padding-bottom: 50px;
+}
+
+.trackText {
+  text-align: left;
+  padding-left: 10px;
+  font-size: 125%;
+}
+
+.trackNumber {
+  font-size: 200%;
+  padding-right: 10px;
 }
